@@ -596,7 +596,7 @@ module.exports = {
 ```
 > `-E HUSKY_GIT_PARAMS` 简单理解就是会拿到我们的 `message` ，然后 `commitlint` 进行 `lint` 校验。
 
-4. 接着配置生成我们的 `changelog` 。
+4. 接着配置生成我们的 `changelog`：
 
 首先安装依赖：
 ```sh
