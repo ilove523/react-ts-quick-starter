@@ -604,13 +604,13 @@ yarn add -D conventional-changelog-cli
 ```
 
 接着在 `package.json` 的 `scripts` 下增加一个命令：
-
+```json
 {
   "scripts": {
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
 }
-
+```
 之后，就可以通过 `yarn changelog` 生成 `angular` 风格的 `changelog` ，需要注意的是，上面这条命令产生的 changelog 是基于上次 tag 版本之后的变更（feat、fix 等等）所产生的。
 
  `:TODO` 示例，看原文。
