@@ -11,7 +11,23 @@
     "lint-eslint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src",
     "lint-stylelint": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}"
   },
-  "repository": "git+https://github.com/ilove523/react-ts-quick-starter.git",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "eslint --config .eslintrc.js"
+    ],
+    "*.{css,less,scss}": [
+      "stylelint --config .stylelintrc.js"
+    ],
+    "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+      "prettier --write"
+    ]
+  },
+  "repository": "git+https://github.com/ilove523/react-ts-quickly.git",
   "keywords": [
     "react",
     "typescript",
@@ -21,19 +37,32 @@
   "author": "ilove523 <wush3w@126.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ilove523/react-ts-quick-starter/issues"
+    "url": "https://github.com/ilove523/react-ts-quickly/issues"
   },
-  "homepage": "https://github.com/ilove523/react-ts-quick-starter#readme",
+  "homepage": "https://github.com/ilove523/react-ts-quickly#readme",
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
+    "conventional-changelog-cli": "^2.1.1",
     "eslint": "^7.14.0",
     "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^23.0.0",
     "prettier": "^2.2.0",
+    "stylelint": "^13.8.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.18.0",
     "typescript": "^4.1.2"
   },
   "private": true
