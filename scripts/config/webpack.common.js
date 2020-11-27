@@ -9,32 +9,36 @@ const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { isDev, PROJECT_PATH, IS_OPEN_HARD_SOURCE } = require('../constants')
 
-const getCssLoaders = (importLoaders) => [
+const getCssLoaders = (importLoader) => [
   isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
   {
     loader: 'css-loader',
     options: {
       modules: false,
       sourceMap: isDev,
-      importLoaders,
+      importLoaders: importLoader,
     },
   },
   {
     loader: 'postcss-loader',
     options: {
       ident: 'postcss',
-      plugins: [
-        // 修复一些和 flex 布局相关的 bug
-        require('postcss-flexbugs-fixes'),
-        require('postcss-preset-env')({
-          autoprefixer: {
-            grid: true,
-            flexbox: 'no-2009'
-          },
-          stage: 3,
-        }),
-        require('postcss-normalize'),
-      ],
+      postcssOptions: {
+        parser: "postcss-js",
+        plugins: [
+          // 修复一些和 flex 布局相关的 bug
+          require('postcss-flexbugs-fixes'),
+          require('postcss-preset-env')({
+            autoprefixer: {
+              grid: true,
+              flexbox: 'no-2009'
+            },
+            stage: 3,
+          }),
+          require('postcss-normalize'),
+        ],
+      },
+      execute: true,
       sourceMap: isDev,
     },
   },
@@ -60,17 +64,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(tsx?|js)$/,
+        test: /\.(tsx?|js)$/i,
         loader: 'babel-loader',
         options: { cacheDirectory: true },
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: getCssLoaders(1),
       },
       {
-        test: /\.less$/,
+        test: /\.less$/i,
         use: [
           ...getCssLoaders(2),
           {

@@ -2,8 +2,8 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const glob = require('glob')
-const PurgeCSSPlugin = require('purgecss-webpack-plugin')
+// const glob = require('glob')
+// const PurgeCSSPlugin = require('purgecss-webpack-plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const common = require('./webpack.common.js')
 const { PROJECT_PATH, shouldOpenAnalyzer } = require('../constants')
@@ -13,10 +13,10 @@ module.exports = merge(common, {
   devtool: 'none',
   plugins: [
     new CleanWebpackPlugin(),
-    new PurgeCSSPlugin({
-      paths: glob.sync(`${resolve(PROJECT_PATH, './src')}/**/*.{tsx,scss,less,css}`, { nodir: true }),
-      whitelist: ['html', 'body']
-    }),
+    // new PurgeCSSPlugin({
+    //   paths: glob.sync(`${resolve(PROJECT_PATH, './src')}/**/*.{tsx,scss,less,css}`, { nodir: true }),
+    //   whitelist: ['html', 'body']
+    // }),
     new webpack.BannerPlugin({
       raw: true,
       banner: '/** @preserve Powered by react-ts-quick-starter (https://github.com/vortesnail/react-ts-quick-starter) */',
